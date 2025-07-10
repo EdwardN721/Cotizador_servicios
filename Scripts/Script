@@ -1,0 +1,178 @@
+CREATE TABLE usuarios (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    usuario VARCHAR(50) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    rol VARCHAR(50) DEFAULT 'admin' CHECK (rol IN ('admin', 'super_admin', 'moderador')),
+    activo BOOLEAN DEFAULT true,
+    ultimo_acceso TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE servicios (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    nombre VARCHAR(200) NOT NULL,
+    descripcion TEXT,
+    categoria VARCHAR(100),
+    precio_estimado DECIMAL(10,2),
+    tiempo_estimado_dias INTEGER,
+    activo BOOLEAN DEFAULT true,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE estados_solicitud (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(50) UNIQUE NOT NULL,
+    descripcion TEXT,
+    color VARCHAR(7), -- Para UI (hex color)
+    orden INTEGER DEFAULT 0,
+    activo BOOLEAN DEFAULT true
+);
+
+CREATE TABLE clientes (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    nombre VARCHAR(150) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    notas TEXT,
+    activo BOOLEAN DEFAULT true,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE solicitudes (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    numero_solicitud VARCHAR(20) UNIQUE NOT NULL, -- Ej: SOL-2024-001
+    cliente_id UUID NOT NULL REFERENCES clientes(id) ON DELETE CASCADE,
+    servicio_id UUID REFERENCES servicios(id),
+    servicio_personalizado VARCHAR(200), -- Si no está en el catálogo
+    descripcion TEXT NOT NULL,
+    presupuesto_estimado DECIMAL(10,2),
+    prioridad VARCHAR(20) DEFAULT 'media' CHECK (prioridad IN ('baja', 'media', 'alta', 'urgente')),
+    
+    -- Fechas importantes
+    fecha_solicitud TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    fecha_estimacion TIMESTAMP,
+    fecha_inicio TIMESTAMP,
+    fecha_cierre TIMESTAMP,
+    
+    -- Estado y seguimiento
+    estado_id INTEGER NOT NULL REFERENCES estados_solicitud(id),
+    usuario_asignado_id UUID REFERENCES usuarios(id),
+    
+    -- Información adicional
+    origen VARCHAR(50) DEFAULT 'web' CHECK (origen IN ('web', 'email', 'telefono', 'referido', 'otro')),
+    notas_internas TEXT,
+    notas_cliente TEXT,
+    
+    -- Auditoría
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_by UUID REFERENCES usuarios(id),
+    updated_by UUID REFERENCES usuarios(id)
+);
+
+CREATE TABLE historial_solicitudes (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    solicitud_id UUID NOT NULL REFERENCES solicitudes(id) ON DELETE CASCADE,
+    campo_modificado VARCHAR(100) NOT NULL,
+    valor_anterior TEXT,
+    valor_nuevo TEXT,
+    usuario_id UUID REFERENCES usuarios(id),
+    fecha_cambio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    comentario TEXT
+);
+
+CREATE TABLE comentarios_solicitudes (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    solicitud_id UUID NOT NULL REFERENCES solicitudes(id) ON DELETE CASCADE,
+    usuario_id UUID REFERENCES usuarios(id),
+    comentario TEXT NOT NULL,
+    es_interno BOOLEAN DEFAULT true, -- true = solo admin, false = visible para cliente
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_usuarios_usuario ON usuarios(usuario);
+CREATE INDEX idx_usuarios_activo ON usuarios(activo);
+
+-- Índices para clientes
+CREATE INDEX idx_clientes_email ON clientes(email);
+CREATE INDEX idx_clientes_nombre ON clientes(nombre);
+
+-- Índices para solicitudes
+CREATE INDEX idx_solicitudes_cliente ON solicitudes(cliente_id);
+CREATE INDEX idx_solicitudes_estado ON solicitudes(estado_id);
+CREATE INDEX idx_solicitudes_fecha ON solicitudes(fecha_solicitud);
+CREATE INDEX idx_solicitudes_usuario_asignado ON solicitudes(usuario_asignado_id);
+CREATE INDEX idx_solicitudes_numero ON solicitudes(numero_solicitud);
+CREATE INDEX idx_solicitudes_prioridad ON solicitudes(prioridad);
+
+-- Índices para historial
+CREATE INDEX idx_historial_solicitud ON historial_solicitudes(solicitud_id);
+CREATE INDEX idx_historial_fecha ON historial_solicitudes(fecha_cambio);
+
+-- Índices para comentarios
+CREATE INDEX idx_comentarios_solicitud ON comentarios_solicitudes(solicitud_id);
+CREATE INDEX idx_comentarios_fecha ON comentarios_solicitudes(created_at);
+
+COMMENT ON TABLE usuarios IS 'Administradores del sistema que gestionan las solicitudes';
+COMMENT ON TABLE clientes IS 'Clientes que realizan solicitudes de servicios';
+COMMENT ON TABLE servicios IS 'Catálogo de servicios disponibles';
+COMMENT ON TABLE estados_solicitud IS 'Estados posibles de las solicitudes';
+COMMENT ON TABLE solicitudes IS 'Solicitudes de servicios realizadas por clientes';
+COMMENT ON TABLE historial_solicitudes IS 'Historial de cambios en las solicitudes para auditoría';
+COMMENT ON TABLE comentarios_solicitudes IS 'Comentarios y notas sobre las solicitudes';
+
+
+CREATE OR REPLACE FUNCTION update_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = CURRENT_TIMESTAMP;
+    RETURN NEW;
+END;
+$$ language 'plpgsql';
+
+-- Aplicar trigger a las tablas necesarias
+CREATE TRIGGER update_usuarios_updated_at BEFORE UPDATE ON usuarios
+    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER update_clientes_updated_at BEFORE UPDATE ON clientes
+    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER update_solicitudes_updated_at BEFORE UPDATE ON solicitudes
+    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER update_servicios_updated_at BEFORE UPDATE ON servicios
+    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+-- =============================================
+-- FUNCIÓN para generar número de solicitud automático
+-- =============================================
+CREATE OR REPLACE FUNCTION generar_numero_solicitud()
+RETURNS TRIGGER AS $$
+DECLARE
+    nuevo_numero VARCHAR(20);
+    contador INTEGER;
+BEGIN
+    -- Obtener el siguiente número secuencial del año actual
+    SELECT COALESCE(MAX(CAST(SUBSTRING(numero_solicitud FROM 10) AS INTEGER)), 0) + 1
+    INTO contador
+    FROM solicitudes 
+    WHERE numero_solicitud LIKE 'SOL-' || EXTRACT(YEAR FROM CURRENT_DATE) || '-%';
+    
+    -- Generar el número con formato SOL-YYYY-XXX
+    nuevo_numero := 'SOL-' || EXTRACT(YEAR FROM CURRENT_DATE) || '-' || LPAD(contador::TEXT, 3, '0');
+    
+    NEW.numero_solicitud := nuevo_numero;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Aplicar trigger para generar número automáticamente
+CREATE TRIGGER trigger_generar_numero_solicitud
+    BEFORE INSERT ON solicitudes
+    FOR EACH ROW
+    WHEN (NEW.numero_solicitud IS NULL OR NEW.numero_solicitud = '')
+    EXECUTE FUNCTION generar_numero_solicitud();
