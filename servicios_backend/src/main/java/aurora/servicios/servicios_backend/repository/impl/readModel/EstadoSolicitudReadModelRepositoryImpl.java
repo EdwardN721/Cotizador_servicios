@@ -21,7 +21,7 @@ public class EstadoSolicitudReadModelRepositoryImpl implements EstadosSolicitudR
     }
 
     @Override
-    public List<EstadosSolicitudDto> obtenerEstadosSolicitud(Long id) {
+    public List<EstadosSolicitudDto> obtenerEstadosSolicitud() {
         return jpaRepository.findAll().stream()
                 .map(estado -> new EstadosSolicitudDto(
                         estado.getId(),

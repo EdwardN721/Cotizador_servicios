@@ -15,8 +15,8 @@ public class ServiciosDto {
     private String descripcion;
     private String categoria;
     private BigDecimal precio_estimado;
-    private int tiempo_estimado_dias;
-    private boolean activo = true;
+    private Integer tiempo_estimado_dias;
+    private Boolean activo = true;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

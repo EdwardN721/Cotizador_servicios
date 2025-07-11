@@ -29,7 +29,7 @@ public class UsuariosReadModelRepositoryImpl implements UsuariosReadModelReposit
                    usuarios.getApellido(),
                    usuarios.getUsuario(),
                    usuarios.getPassword_hash(),
-                   usuarios.isActivo(),
+                   usuarios.getActivo(),
                    usuarios.getRol(),
                    usuarios.getUltimoAcceso(),
                    usuarios.getCreatedAt(),

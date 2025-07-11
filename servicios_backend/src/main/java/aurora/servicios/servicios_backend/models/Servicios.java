@@ -25,9 +25,9 @@ public class Servicios {
     @Column(precision = 10, scale = 2)
     private BigDecimal precio_estimado;
 
-    private int tiempo_estimado_dias;
+    private Integer tiempo_estimado_dias;
 
-    private boolean activo = true;
+    private Boolean activo = true;
 
     @Column(updatable = false)
     private LocalDateTime createdAt;

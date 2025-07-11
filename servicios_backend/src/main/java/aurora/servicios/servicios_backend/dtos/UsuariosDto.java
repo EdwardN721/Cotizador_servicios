@@ -16,7 +16,7 @@ public class UsuariosDto {
     private String apellido;
     private String usuario;
     private String password_hash;
-    private boolean activo = true;
+    private Boolean activo = true;
     private Rol rol = Rol.ADMIN;
     private LocalDateTime ultimoAcceso;
     private LocalDateTime createdAt;
