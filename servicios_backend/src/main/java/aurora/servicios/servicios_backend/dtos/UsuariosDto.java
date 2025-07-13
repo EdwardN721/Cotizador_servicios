@@ -17,6 +17,7 @@ public class UsuariosDto {
     private String usuario;
     private String password_hash;
     private Boolean activo = true;
+    @Enumerated(EnumType.STRING)
     private Rol rol = Rol.ADMIN;
     private LocalDateTime ultimoAcceso;
     private LocalDateTime createdAt;

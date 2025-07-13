@@ -25,27 +25,12 @@ public class ClientesReadModelRepositoryImpl implements ClientesReadModelReposit
     @Override
     public List<ClientesDto> ObtenerClientes() {
         return jpaRepository.findAll().stream()
-                .map(clientes -> new ClientesDto(
-                        clientes.getId(),
-                        clientes.getNombre(),
-                        clientes.getEmail(),
-                        clientes.getNotas(),
-                        clientes.getActivo(),
-                        clientes.getCreatedAt(),
-                        clientes.getUpdatedAt()
-                )).collect(Collectors.toList());
+                .map(ClientesDto::fromEntity).toList();
     }
 
     @Override
     public Optional<ClientesDto> ObtenerClientePorId(UUID id) {
-        return jpaRepository.findById(id).map(cliente -> new ClientesDto(
-                cliente.getId(),
-                cliente.getNombre(),
-                cliente.getEmail(),
-                cliente.getNotas(),
-                cliente.getActivo(),
-                cliente.getCreatedAt(),
-                cliente.getUpdatedAt()
-        ));
+        return jpaRepository.findById(id)
+                .map(ClientesDto::fromEntity);
     }
 }

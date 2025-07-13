@@ -26,6 +26,14 @@ public class UsuariosCommandServiceImpl implements UsuariosCommandService {
         if(usuario == null) {
             throw new IllegalArgumentException("El usuario no puede estar vacio.");
         }
+
+        System.out.println(usuario.getRol());
+
+        if (usuario.getRol() == null) {
+            throw new IllegalArgumentException("El rol es obligatorio.");
+        }
+
+
         return repository.crearUsuario(usuario);
     }
 

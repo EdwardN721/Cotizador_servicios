@@ -26,15 +26,7 @@ public class EstadoSolicitudesCommandServiceImpl implements EstadosSolicitudesCo
             throw new IllegalArgumentException("El estado solicitud no puede ser nulo");
         }
 
-        repositorio.crearEstadoSolicitud(estadosSolicitud);
-        return new EstadosSolicitudDto(
-                estadosSolicitud.getId(),
-                estadosSolicitud.getNombre(),
-                estadosSolicitud.getDescripcion(),
-                estadosSolicitud.getColor(),
-                estadosSolicitud.getOrden(),
-                estadosSolicitud.getActivo()
-        );
+        return repositorio.crearEstadoSolicitud(estadosSolicitud);
     }
 
     @Override
@@ -43,11 +35,12 @@ public class EstadoSolicitudesCommandServiceImpl implements EstadosSolicitudesCo
                 .orElseThrow(() -> new RuntimeException("Estado no encontrado con el ID: " + estadosSolicitud.getId()));
         EstadosSolicitud estadoActualziado = new EstadosSolicitud();
 
-        estadoActualziado.setId(estadosSolicitudDto.getId());
-        estadoActualziado.setNombre(estadosSolicitud.getNombre() != null ?  estadosSolicitud.getNombre() : estadosSolicitudDto.getNombre());
-        estadoActualziado.setDescripcion(estadosSolicitud.getDescripcion() != null ? estadosSolicitud.getDescripcion() : estadosSolicitudDto.getDescripcion());
-        estadoActualziado.setOrden(estadosSolicitud.getColor() != null ? estadosSolicitud.getOrden() : estadosSolicitudDto.getOrden());
-        estadoActualziado.setActivo(estadosSolicitud.getActivo() != null ?  estadosSolicitud.getActivo() : estadosSolicitudDto.getActivo());
+        estadoActualziado.setId(estadosSolicitudDto.id());
+        estadoActualziado.setNombre(estadosSolicitud.getNombre() != null ?  estadosSolicitud.getNombre() : estadosSolicitudDto.nombre());
+        estadoActualziado.setDescripcion(estadosSolicitud.getDescripcion() != null ? estadosSolicitud.getDescripcion() : estadosSolicitudDto.descripcion());
+        estadoActualziado.setColor(estadosSolicitud.getColor() != null ? estadosSolicitud.getColor() : estadosSolicitudDto.color());
+        estadoActualziado.setOrden(estadosSolicitud.getOrden() != null ? estadosSolicitud.getOrden() : estadosSolicitudDto.orden());
+        estadoActualziado.setActivo(estadosSolicitud.getActivo() != null ?  estadosSolicitud.getActivo() : estadosSolicitudDto.activo());
 
         return repositorio.actualizarEstadoSolicitud(estadoActualziado);
     }
@@ -61,6 +54,6 @@ public class EstadoSolicitudesCommandServiceImpl implements EstadosSolicitudesCo
             throw new IllegalArgumentException("El estado solicitud no puede ser nulo");
         }
 
-        repositorio.eliminarEstadoSolicitud(estadosSolicitudDto.getId());
+        repositorio.eliminarEstadoSolicitud(estadosSolicitudDto.id());
     }
 }

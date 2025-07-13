@@ -5,10 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Setter @Getter
+@NoArgsConstructor
 public class EstadosSolicitud {
     @Id @GeneratedValue
     private Long id;
@@ -25,4 +27,21 @@ public class EstadosSolicitud {
     private Integer orden = 0;
 
     private Boolean activo = true;
+
+    public EstadosSolicitud(Long id, String nombre, String descripcion, String color, Integer orden, Boolean activo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.color = color;
+        this.orden = orden;
+        this.activo = activo;
+    }
+
+    public EstadosSolicitud(String nombre, String descripcion, String color, Integer orden, Boolean activo) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.color = color;
+        this.orden = orden;
+        this.activo = activo;
+    }
 }

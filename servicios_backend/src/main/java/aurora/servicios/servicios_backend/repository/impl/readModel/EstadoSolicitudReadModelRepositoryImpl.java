@@ -23,25 +23,12 @@ public class EstadoSolicitudReadModelRepositoryImpl implements EstadosSolicitudR
     @Override
     public List<EstadosSolicitudDto> obtenerEstadosSolicitud() {
         return jpaRepository.findAll().stream()
-                .map(estado -> new EstadosSolicitudDto(
-                        estado.getId(),
-                        estado.getNombre(),
-                        estado.getDescripcion(),
-                        estado.getColor(),
-                        estado.getOrden(),
-                        estado.getActivo()
-                )).collect(Collectors.toUnmodifiableList());
+                .map(EstadosSolicitudDto::fromEntity)
+                .toList();
     }
 
     @Override
     public Optional<EstadosSolicitudDto> obtenerEstadoSolicitudPorId(Long id) {
-        return jpaRepository.findById(id).map(estado -> new EstadosSolicitudDto(
-                estado.getId(),
-                estado.getNombre(),
-                estado.getDescripcion(),
-                estado.getColor(),
-                estado.getOrden(),
-                estado.getActivo()
-        ));
+        return jpaRepository.findById(id).map(EstadosSolicitudDto::fromEntity);
     }
 }

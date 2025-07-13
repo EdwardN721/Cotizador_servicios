@@ -8,5 +8,5 @@ import java.util.UUID;
 
 public interface ServiciosReadModelRepository {
     List<ServiciosDto> obtenerServicios();
-    Optional<ServiciosDto> obtenerServicio(UUID id);
+    Optional<ServiciosDto> obtenerServicioPorId(UUID id);
 }

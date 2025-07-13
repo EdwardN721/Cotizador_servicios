@@ -39,6 +39,17 @@ public class UsuariosReadModelRepositoryImpl implements UsuariosReadModelReposit
 
     @Override
     public Optional<UsuariosDto> obtenerUsuario(UUID id) {
-        return Optional.empty();
+        return jpaRepository.findById(id).map(usuario -> new UsuariosDto(
+                usuario.getId(),
+                usuario.getNombre(),
+                usuario.getApellido(),
+                usuario.getUsuario(),
+                usuario.getPassword_hash(),
+                usuario.getActivo(),
+                usuario.getRol(),
+                usuario.getUltimoAcceso(),
+                usuario.getCreatedAt(),
+                usuario.getUpdatedAt()
+        ));
     }
 }

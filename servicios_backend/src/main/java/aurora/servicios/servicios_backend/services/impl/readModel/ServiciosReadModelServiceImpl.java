@@ -26,7 +26,7 @@ public class ServiciosReadModelServiceImpl implements ServiciosReadModelService 
 
     @Override
     public Optional<ServiciosDto> obtenerServicio(UUID id) {
-        Optional<ServiciosDto> dto = repository.obtenerServicio(id);
+        Optional<ServiciosDto> dto = repository.obtenerServicioPorId(id);
         if (dto.isPresent()) {
             return dto;
         }

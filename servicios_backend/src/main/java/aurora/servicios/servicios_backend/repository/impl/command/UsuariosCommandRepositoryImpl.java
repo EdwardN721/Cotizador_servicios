@@ -20,14 +20,21 @@ public class UsuariosCommandRepositoryImpl implements UsuariosCommandRepository 
 
     @Override
     public UsuariosDto crearUsuario(Usuarios usuario) {
+        System.out.println("Rol al guardar: " + usuario.getRol());
+        if (usuario.getRol() == null) {
+            throw new IllegalStateException("Rol no puede ser null");
+        }
+
+
         jpaRepository.save(usuario);
-        return new UsuariosDto(
+        return
+                new UsuariosDto(
                 usuario.getId(),
                 usuario.getNombre(),
                 usuario.getApellido(),
                 usuario.getUsuario(),
                 usuario.getPassword_hash(),
-                usuario.isActivo(),
+                usuario.getActivo(),
                 usuario.getRol(),
                 usuario.getUltimoAcceso(),
                 usuario.getCreatedAt(),
@@ -44,7 +51,7 @@ public class UsuariosCommandRepositoryImpl implements UsuariosCommandRepository 
                 usuario.getApellido(),
                 usuario.getUsuario(),
                 usuario.getPassword_hash(),
-                usuario.isActivo(),
+                usuario.getActivo(),
                 usuario.getRol(),
                 usuario.getUltimoAcceso(),
                 usuario.getCreatedAt(),

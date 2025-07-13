@@ -25,31 +25,12 @@ public class ServiciosReadModelRepositoryImpl implements ServiciosReadModelRepos
     @Override
     public List<ServiciosDto> obtenerServicios() {
         return jpaRepository.findAll().stream()
-                .map(servicios -> new ServiciosDto(
-                        servicios.getId(),
-                        servicios.getNombre(),
-                        servicios.getDescripcion(),
-                        servicios.getCategoria(),
-                        servicios.getPrecio_estimado(),
-                        servicios.getTiempo_estimado_dias(),
-                        servicios.isActivo(),
-                        servicios.getCreatedAt(),
-                        servicios.getUpdatedAt()
-                )).collect(Collectors.toUnmodifiableList());
+                .map(ServiciosDto::fromEntity)
+                .toList();
     }
 
     @Override
-    public Optional<ServiciosDto> obtenerServicio(UUID id) {
-        return jpaRepository.findById(id).map(servicios -> new ServiciosDto(
-                servicios.getId(),
-                servicios.getNombre(),
-                servicios.getDescripcion(),
-                servicios.getCategoria(),
-                servicios.getPrecio_estimado(),
-                servicios.getTiempo_estimado_dias(),
-                servicios.isActivo(),
-                servicios.getCreatedAt(),
-                servicios.getUpdatedAt()
-        ));
+    public Optional<ServiciosDto> obtenerServicioPorId(UUID id) {
+        return jpaRepository.findById(id).map(ServiciosDto::fromEntity);
     }
 }

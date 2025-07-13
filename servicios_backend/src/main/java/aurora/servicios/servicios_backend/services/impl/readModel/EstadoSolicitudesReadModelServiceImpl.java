@@ -17,7 +17,7 @@ public class EstadoSolicitudesReadModelServiceImpl implements EstadosSolicitudRe
     }
 
     @Override
-    public List<EstadosSolicitudDto> obtenerEstadosSolicitud(Long id) {
+    public List<EstadosSolicitudDto> obtenerEstadosSolicitud() {
         return repositorio.obtenerEstadosSolicitud();
     }
 

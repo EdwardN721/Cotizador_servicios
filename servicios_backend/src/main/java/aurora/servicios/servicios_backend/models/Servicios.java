@@ -2,6 +2,7 @@ package aurora.servicios.servicios_backend.models;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
@@ -10,6 +11,7 @@ import java.util.UUID;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor
 public class Servicios {
     @Id @GeneratedValue
     private UUID id;
@@ -46,4 +48,22 @@ public class Servicios {
         updatedAt = LocalDateTime.now();
     }
 
+    public Servicios(UUID id, String nombre, String descripcion, String categoria, BigDecimal precio_estimado, Integer tiempo_estimado_dias, Boolean activo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.precio_estimado = precio_estimado;
+        this.tiempo_estimado_dias = tiempo_estimado_dias;
+        this.activo = activo;
+    }
+
+    public Servicios(String nombre, String descripcion, String categoria, BigDecimal precio_estimado, Integer tiempo_estimado_dias, Boolean activo) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.precio_estimado = precio_estimado;
+        this.tiempo_estimado_dias = tiempo_estimado_dias;
+        this.activo = activo;
+    }
 }

@@ -30,7 +30,7 @@ public class ServiciosCommandRepositoryImpl implements ServiciosCommandRepositor
                 servicio.getCategoria(),
                 servicio.getPrecio_estimado(),
                 servicio.getTiempo_estimado_dias(),
-                servicio.isActivo(),
+                servicio.getActivo(),
                 servicio.getCreatedAt(),
                 servicio.getUpdatedAt()
         );
@@ -46,7 +46,7 @@ public class ServiciosCommandRepositoryImpl implements ServiciosCommandRepositor
                 servicio.getCategoria(),
                 servicio.getPrecio_estimado(),
                 servicio.getTiempo_estimado_dias(),
-                servicio.isActivo(),
+                servicio.getActivo(),
                 servicio.getCreatedAt(),
                 servicio.getUpdatedAt()
         );

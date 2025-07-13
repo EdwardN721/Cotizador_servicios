@@ -48,7 +48,7 @@ public class UsuariosController {
 
     @PutMapping()
     public ResponseEntity<UsuariosDto> actualizarUsuario(@RequestBody ActualizarUsuarioCommand command) {
-        return ResponseEntity.status(HttpStatus.OK).body(commandHandler.ActualizarUsuario(command));
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(commandHandler.ActualizarUsuario(command));
     }
 
     @DeleteMapping("{id}")

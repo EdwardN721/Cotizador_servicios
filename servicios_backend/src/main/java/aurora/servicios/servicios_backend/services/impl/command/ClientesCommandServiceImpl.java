@@ -52,10 +52,10 @@ public class ClientesCommandServiceImpl implements ClientesCommandService {
         Clientes clienteActualizado = new  Clientes();
 
         clienteActualizado.setId(clientes.getId());
-        clienteActualizado.setNombre(clientes.getNombre() != null ? clientes.getNombre() : dto.getNombre());
-        clienteActualizado.setEmail(clientes.getEmail() != null ? clientes.getEmail() : dto.getEmail());
-        clienteActualizado.setNotas(clientes.getNotas() != null ? clientes.getNotas() : dto.getNotas());
-        clienteActualizado.setActivo(clientes.getActivo() != null ? clientes.getActivo() : dto.getActivo());
+        clienteActualizado.setNombre(clientes.getNombre() != null ? clientes.getNombre() : dto.nombre());
+        clienteActualizado.setEmail(clientes.getEmail() != null ? clientes.getEmail() : dto.email());
+        clienteActualizado.setNotas(clientes.getNotas() != null ? clientes.getNotas() : dto.notas());
+        clienteActualizado.setActivo(clientes.getActivo() != null ? clientes.getActivo() : dto.activo());
         clienteActualizado.setCreatedAt(clientes.getCreatedAt());
         clienteActualizado.setUpdatedAt(clientes.getUpdatedAt());
 
@@ -71,6 +71,6 @@ public class ClientesCommandServiceImpl implements ClientesCommandService {
             return;
         }
 
-        repository.eliminarClientes(dto.getId());
+        repository.eliminarClientes(dto.id());
     }
 }

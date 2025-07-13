@@ -2,6 +2,7 @@ package aurora.servicios.servicios_backend.models;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -9,6 +10,7 @@ import java.util.UUID;
 
 @Entity
 @Setter @Getter
+@NoArgsConstructor
 public class Clientes {
     @Id @GeneratedValue
     private UUID id;
@@ -39,5 +41,20 @@ public class Clientes {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
+    }
+
+    public Clientes(String nombre, String email, String notas, Boolean activo) {
+        this.nombre = nombre;
+        this.email = email;
+        this.notas = notas;
+        this.activo = activo;
+    }
+
+    public Clientes(UUID id, String nombre, String email, String notas, Boolean activo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.email = email;
+        this.notas = notas;
+        this.activo = activo;
     }
 }

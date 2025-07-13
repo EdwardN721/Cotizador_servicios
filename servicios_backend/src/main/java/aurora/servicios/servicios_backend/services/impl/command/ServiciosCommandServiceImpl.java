@@ -28,48 +28,37 @@ public class ServiciosCommandServiceImpl implements ServiciosCommandService {
             throw new IllegalArgumentException("Servicios no pudo ser nulo.");
         }
 
-        repositorio.crearServicio(servicio);
-        return new ServiciosDto(
-                servicio.getId(),
-                servicio.getNombre(),
-                servicio.getDescripcion(),
-                servicio.getCategoria(),
-                servicio.getPrecio_estimado(),
-                servicio.getTiempo_estimado_dias(),
-                servicio.getActivo(),
-                servicio.getCreatedAt(),
-                servicio.getUpdatedAt()
-        );
+        return repositorio.crearServicio(servicio);
     }
 
     @Override
     public ServiciosDto actualizarServicio(Servicios servicio) {
-        ServiciosDto dto = readRepository.obtenerServicio(servicio.getId())
+        ServiciosDto dto = readRepository.obtenerServicioPorId(servicio.getId())
                 .orElseThrow(() -> new RuntimeException("El servicio no se encontró con el ID: " + servicio.getId()));
         Servicios servicioActualizado = new  Servicios();
 
-        servicioActualizado.setId(dto.getId());
-        servicioActualizado.setNombre(servicio.getNombre() != null ? servicio.getNombre() : dto.getNombre());
-        servicioActualizado.setDescripcion(servicio.getDescripcion() != null ? servicio.getDescripcion() : dto.getDescripcion());
-        servicioActualizado.setCategoria(servicio.getCategoria() != null ? servicio.getCategoria() : dto.getCategoria());
-        servicioActualizado.setPrecio_estimado(servicio.getPrecio_estimado() != null ? servicio.getPrecio_estimado() : dto.getPrecio_estimado());
-        servicioActualizado.setTiempo_estimado_dias(servicio.getTiempo_estimado_dias() != null ? servicio.getTiempo_estimado_dias() : dto.getTiempo_estimado_dias());
-        servicioActualizado.setActivo(servicio.getActivo() != null ? servicio.getActivo() : dto.getActivo());
-        servicioActualizado.setCreatedAt(dto.getCreatedAt());
-        servicioActualizado.setUpdatedAt(dto.getUpdatedAt());
+        servicioActualizado.setId(dto.id());
+        servicioActualizado.setNombre(servicio.getNombre() != null ? servicio.getNombre() : dto.nombre());
+        servicioActualizado.setDescripcion(servicio.getDescripcion() != null ? servicio.getDescripcion() : dto.descripcion());
+        servicioActualizado.setCategoria(servicio.getCategoria() != null ? servicio.getCategoria() : dto.categoria());
+        servicioActualizado.setPrecio_estimado(servicio.getPrecio_estimado() != null ? servicio.getPrecio_estimado() : dto.precio_estimado());
+        servicioActualizado.setTiempo_estimado_dias(servicio.getTiempo_estimado_dias() != null ? servicio.getTiempo_estimado_dias() : dto.tiempo_estimado_dias());
+        servicioActualizado.setActivo(servicio.getActivo() != null ? servicio.getActivo() : dto.activo());
+        servicioActualizado.setCreatedAt(dto.createdAt());
+        servicioActualizado.setUpdatedAt(dto.updatedAt());
 
         return repositorio.actualizarServicio(servicioActualizado);
     }
 
     @Override
     public void eliminarServicio(UUID id) {
-        ServiciosDto dto = readRepository.obtenerServicio(id)
+        ServiciosDto dto = readRepository.obtenerServicioPorId(id)
                 .orElseThrow(() -> new RuntimeException("El servicio no se encontró con el ID: " + id));
 
-        if(dto.getActivo()==null){
+        if(dto==null){
             throw new RuntimeException("El servicio no se encontró.");
         }
 
-        repositorio.eliminarServicio(dto.getId());
+        repositorio.eliminarServicio(dto.id());
     }
 }
