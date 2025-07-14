@@ -1,5 +1,5 @@
 # Ignorar node_modules del frontend
-/servicios-frontend/node_modules/
+/servicios_frontend/node_modules/
 
 # Ignorar archivos de build de React
 /servicios-frontend/build/
