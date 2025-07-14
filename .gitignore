@@ -1,0 +1,17 @@
+# Ignorar node_modules del frontend
+/servicios-frontend/node_modules/
+
+# Ignorar archivos de build de React
+/servicios-frontend/build/
+
+# Ignorar logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignorar archivos temporales
+*.log
+.DS_Store
+
+# Ignorar carpetas ocultas (como las de Mac o sistemas CI)
+**/.cache/

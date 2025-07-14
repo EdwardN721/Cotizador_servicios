@@ -176,3 +176,8 @@ CREATE TRIGGER trigger_generar_numero_solicitud
     FOR EACH ROW
     WHEN (NEW.numero_solicitud IS NULL OR NEW.numero_solicitud = '')
     EXECUTE FUNCTION generar_numero_solicitud();
+
+
+	ALTER TABLE tu_tabla
+    ALTER COLUMN rol SET DEFAULT 'ADMIN',
+    ADD CONSTRAINT check_rol CHECK (rol IN ('ADMIN', 'SUPER_ADMIN', 'MODERADOR'));
