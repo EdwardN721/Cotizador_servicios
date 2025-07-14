@@ -4,6 +4,7 @@ import aurora.servicios.servicios_backend.enums.Origen;
 import aurora.servicios.servicios_backend.enums.Prioridad;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
@@ -12,6 +13,7 @@ import java.util.UUID;
 
 @Entity
 @Setter @Getter
+@NoArgsConstructor
 public class Solicitudes {
     @Id @GeneratedValue
     private UUID id;
@@ -36,9 +38,6 @@ public class Solicitudes {
 
     @Column(name = "presupuesto_estimado", precision = 10, scale = 2)
     private BigDecimal presupuestoEstimado;
-
-
-
 
     @Enumerated(EnumType.STRING)
     @Column(name = "prioridad", length = 20)
@@ -90,5 +89,44 @@ public class Solicitudes {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
+    }
+
+    public Solicitudes(UUID id, String numeroSolicitud, Clientes cliente, Servicios servicio, String servicioPersonalizado, String descripcion, BigDecimal presupuestoEstimado, Prioridad prioridad, LocalDateTime fechaSolicitud, LocalDateTime fechaEstimacion, LocalDateTime fechaInicio, LocalDateTime fechaCierre, EstadosSolicitud estado, Usuarios usuarioAsignado, Origen origen, String notasInternas, String notasCliente) {
+        this.id = id;
+        this.numeroSolicitud = numeroSolicitud;
+        this.cliente = cliente;
+        this.servicio = servicio;
+        this.servicioPersonalizado = servicioPersonalizado;
+        this.descripcion = descripcion;
+        this.presupuestoEstimado = presupuestoEstimado;
+        this.prioridad = prioridad;
+        this.fechaSolicitud = fechaSolicitud;
+        this.fechaEstimacion = fechaEstimacion;
+        this.fechaInicio = fechaInicio;
+        this.fechaCierre = fechaCierre;
+        this.estado = estado;
+        this.usuarioAsignado = usuarioAsignado;
+        this.origen = origen;
+        this.notasInternas = notasInternas;
+        this.notasCliente = notasCliente;
+    }
+
+    public Solicitudes(String numeroSolicitud, Clientes cliente, Servicios servicio, String servicioPersonalizado, String descripcion, BigDecimal presupuestoEstimado, Prioridad prioridad, LocalDateTime fechaSolicitud, LocalDateTime fechaEstimacion, LocalDateTime fechaInicio, LocalDateTime fechaCierre, EstadosSolicitud estado, Usuarios usuarioAsignado, Origen origen, String notasInternas, String notasCliente) {
+        this.numeroSolicitud = numeroSolicitud;
+        this.cliente = cliente;
+        this.servicio = servicio;
+        this.servicioPersonalizado = servicioPersonalizado;
+        this.descripcion = descripcion;
+        this.presupuestoEstimado = presupuestoEstimado;
+        this.prioridad = prioridad;
+        this.fechaSolicitud = fechaSolicitud;
+        this.fechaEstimacion = fechaEstimacion;
+        this.fechaInicio = fechaInicio;
+        this.fechaCierre = fechaCierre;
+        this.estado = estado;
+        this.usuarioAsignado = usuarioAsignado;
+        this.origen = origen;
+        this.notasInternas = notasInternas;
+        this.notasCliente = notasCliente;
     }
 }

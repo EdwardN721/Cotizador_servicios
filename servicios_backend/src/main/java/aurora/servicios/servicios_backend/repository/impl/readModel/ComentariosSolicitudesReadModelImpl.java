@@ -23,26 +23,12 @@ public class ComentariosSolicitudesReadModelImpl implements ComentariosSolicitud
     @Override
     public List<ComentariosSolicitudesDto> obtenerComentarios() {
         return jpaRepository.findAll().stream()
-                .map(comentario -> new ComentariosSolicitudesDto(
-                        comentario.getId(),
-                        comentario.getSolicitud(),
-                        comentario.getUsuario(),
-                        comentario.getComentario(),
-                        comentario.getEsInterno(),
-                        comentario.getCreatedAt()
-                ))
-                .collect(Collectors.toUnmodifiableList());
+                .map(ComentariosSolicitudesDto::fromEntity)
+                .toList();
     }
 
     @Override
     public Optional<ComentariosSolicitudesDto> obtenerComentariosPorId(UUID id) {
-        return jpaRepository.findById(id).map(comentario -> new ComentariosSolicitudesDto(
-                comentario.getId(),
-                comentario.getSolicitud(),
-                comentario.getUsuario(),
-                comentario.getComentario(),
-                comentario.getEsInterno(),
-                comentario.getCreatedAt()
-        ));
+        return jpaRepository.findById(id).map(ComentariosSolicitudesDto::fromEntity);
     }
 }

@@ -30,15 +30,7 @@ public class ComentariosSolicitudesCommandServceImpl implements ComentariosSolci
             return null;
         }
 
-        repositorio.crearComentario(comentario);
-        return new ComentariosSolicitudesDto(
-                comentario.getId(),
-                comentario.getSolicitud(),
-                comentario.getUsuario(),
-                comentario.getComentario(),
-                comentario.getEsInterno(),
-                comentario.getCreatedAt()
-        );
+        return repositorio.crearComentario(comentario);
     }
 
     @Override
@@ -47,28 +39,20 @@ public class ComentariosSolicitudesCommandServceImpl implements ComentariosSolci
                 .orElseThrow(() -> new RuntimeException("Comentario no encontrado con el ID: " + comentario.getId()));
         ComentariosSolicitudes comentariosActualizado = new ComentariosSolicitudes();
 
-        comentariosActualizado.setId(dto.getId());
-        comentariosActualizado.setSolicitud(comentario.getSolicitud() != null ? comentario.getSolicitud() : dto.getSolicitud());
-        comentariosActualizado.setUsuario(comentario.getUsuario() != null ? comentario.getUsuario() : dto.getUsuario());
-        comentariosActualizado.setComentario(comentario.getComentario()  != null ? comentario.getComentario() : dto.getComentario());
-        comentariosActualizado.setEsInterno(comentario.getEsInterno() != null ? comentario.getEsInterno() : dto.getEsInterno());
-        comentariosActualizado.setCreatedAt(dto.getCreatedAt());
+        comentariosActualizado.setId(dto.id());
+        comentariosActualizado.setSolicitud(comentario.getSolicitud() != null ? comentario.getSolicitud() : dto.solicitud());
+        comentariosActualizado.setUsuario(comentario.getUsuario() != null ? comentario.getUsuario() : dto.usuario());
+        comentariosActualizado.setComentario(comentario.getComentario()  != null ? comentario.getComentario() : dto.comentario());
+        comentariosActualizado.setEsInterno(comentario.getEsInterno() != null ? comentario.getEsInterno() : dto.esInterno());
+        comentariosActualizado.setCreatedAt(dto.createdAt());
 
-        repositorio.actualizarComentario(comentariosActualizado);
-        return new ComentariosSolicitudesDto(
-                comentario.getId(),
-                comentario.getSolicitud(),
-                comentario.getUsuario(),
-                comentario.getComentario(),
-                comentario.getEsInterno(),
-                comentario.getCreatedAt()
-        );
+        return repositorio.actualizarComentario(comentariosActualizado);
     }
 
     @Override
     public void eliminarComentario(UUID id) {
         ComentariosSolicitudesDto dto = readRepository.obtenerComentariosPorId(id)
                 .orElseThrow(() -> new RuntimeException("Comentario no encontrado con el ID: " + id));
-        repositorio.eliminarComentario(dto.getId());
+        repositorio.eliminarComentario(dto.id());
     }
 }

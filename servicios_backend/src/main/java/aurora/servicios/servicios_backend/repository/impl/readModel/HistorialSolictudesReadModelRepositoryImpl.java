@@ -23,29 +23,12 @@ public class HistorialSolictudesReadModelRepositoryImpl implements HistorialSolc
     @Override
     public List<HistorialSolicitudesDto> obtenerHistorialSolcitudes() {
         return jpaRepository.findAll().stream()
-                .map(historial -> new HistorialSolicitudesDto(
-                        historial.getId(),
-                        historial.getSolicitud(),
-                        historial.getCampoModificado(),
-                        historial.getValorAnterior(),
-                        historial.getValorNuevo(),
-                        historial.getUsuario(),
-                        historial.getFechaCambio(),
-                        historial.getComentario()
-                )).collect(Collectors.toUnmodifiableList());
+                .map(HistorialSolicitudesDto::fromEntity)
+                .toList();
     }
 
     @Override
     public Optional<HistorialSolicitudesDto> ObtenerHistorialSolicitudesPorId(UUID id) {
-        return jpaRepository.findById(id).map(historial -> new HistorialSolicitudesDto(
-                historial.getId(),
-                historial.getSolicitud(),
-                historial.getCampoModificado(),
-                historial.getValorAnterior(),
-                historial.getValorNuevo(),
-                historial.getUsuario(),
-                historial.getFechaCambio(),
-                historial.getComentario()
-        ));
+        return jpaRepository.findById(id).map(HistorialSolicitudesDto::fromEntity);
     }
 }

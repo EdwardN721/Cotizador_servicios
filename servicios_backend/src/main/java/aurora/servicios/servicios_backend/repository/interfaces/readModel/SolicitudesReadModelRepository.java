@@ -8,5 +8,5 @@ import java.util.UUID;
 
 public interface SolicitudesReadModelRepository {
     List<SolicitudesDto> obtenerSolicitudes();
-    Optional<SolicitudesDto> obtenerSolicitud(UUID id);
+    Optional<SolicitudesDto> obtenerSolicitudPorId(UUID id);
 }

@@ -25,8 +25,8 @@ public class SolicitudesReadModelServicesImpl implements SolicitudesReadModelSer
     }
 
     @Override
-    public Optional<SolicitudesDto> obtenerSolicitud(UUID id) {
-        Optional<SolicitudesDto> dto = repository.obtenerSolicitud(id);
+    public Optional<SolicitudesDto> obtenerSolicitudPorId(UUID id) {
+        Optional<SolicitudesDto> dto = repository.obtenerSolicitudPorId(id);
         if (dto.isPresent()) {
             return dto;
         }

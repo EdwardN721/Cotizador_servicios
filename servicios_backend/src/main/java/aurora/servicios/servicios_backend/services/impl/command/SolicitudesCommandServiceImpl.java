@@ -27,72 +27,49 @@ public class SolicitudesCommandServiceImpl implements SolicitudesCommandService 
             throw new IllegalArgumentException("Solicitud no puede ser nulo.");
         }
 
-        repositorio.crearSolicitud(solicitud);
-
-        return new SolicitudesDto(
-                solicitud.getId(),
-                solicitud.getNumeroSolicitud(),
-                solicitud.getCliente(),
-                solicitud.getServicio(),
-                solicitud.getServicioPersonalizado(),
-                solicitud.getDescripcion(),
-                solicitud.getPresupuestoEstimado(),
-                solicitud.getPrioridad(),
-                solicitud.getFechaSolicitud(),
-                solicitud.getFechaEstimacion(),
-                solicitud.getFechaInicio(),
-                solicitud.getFechaCierre(),
-                solicitud.getEstado(),
-                solicitud.getUsuarioAsignado(),
-                solicitud.getOrigen(),
-                solicitud.getNotasInternas(),
-                solicitud.getNotasCliente(),
-                solicitud.getCreatedAt(),
-                solicitud.getUpdatedAt(),
-                solicitud.getCreadoPor(),
-                solicitud.getActualizadoPor()
-        );
+        System.out.println(solicitud);
+        return repositorio.crearSolicitud(solicitud);
     }
 
     @Override
     public SolicitudesDto actualizarSolicitud(Solicitudes solicitud) {
-        SolicitudesDto dto = readRepository.obtenerSolicitud(solicitud.getId())
+        SolicitudesDto dto = readRepository.obtenerSolicitudPorId(solicitud.getId())
                 .orElseThrow(() -> new RuntimeException("Solicitud no encontrada con el ID: " + solicitud.getId()));
         Solicitudes solicitudActualizada = new Solicitudes();
 
-        solicitudActualizada.setId(dto.getId());
-        solicitudActualizada.setNumeroSolicitud(solicitud.getNumeroSolicitud() != null ? solicitud.getNumeroSolicitud() : dto.getNumeroSolicitud());
-        solicitudActualizada.setCliente(solicitud.getCliente() != null ? solicitud.getCliente() : dto.getCliente());
-        solicitudActualizada.setServicio(solicitud.getServicio() != null ? solicitud.getServicio() : dto.getServicio());
-        solicitudActualizada.setServicioPersonalizado(solicitud.getServicioPersonalizado() != null ? solicitud.getServicioPersonalizado() : dto.getServicioPersonalizado());
-        solicitudActualizada.setDescripcion(solicitud.getDescripcion() != null ? solicitud.getDescripcion() : dto.getDescripcion());
-        solicitudActualizada.setPresupuestoEstimado(solicitud.getPresupuestoEstimado() != null ? solicitud.getPresupuestoEstimado() : dto.getPresupuestoEstimado());
-        solicitudActualizada.setPrioridad(solicitud.getPrioridad() != null ? solicitud.getPrioridad() : dto.getPrioridad());
-        solicitudActualizada.setFechaSolicitud(solicitud.getFechaSolicitud() != null ? solicitud.getFechaSolicitud() : dto.getFechaSolicitud());
-        solicitudActualizada.setFechaEstimacion(solicitud.getFechaEstimacion() != null ? solicitud.getFechaEstimacion() : dto.getFechaEstimacion());
-        solicitudActualizada.setFechaInicio(solicitud.getFechaInicio() != null ? solicitud.getFechaInicio() : dto.getFechaInicio());
-        solicitudActualizada.setEstado(solicitud.getEstado() != null ? solicitud.getEstado() : dto.getEstado());
-        solicitudActualizada.setUsuarioAsignado(solicitud.getUsuarioAsignado() != null ? solicitud.getUsuarioAsignado() : dto.getUsuarioAsignado());
-        solicitudActualizada.setOrigen(solicitud.getOrigen() != null ? solicitud.getOrigen() : dto.getOrigen());
-        solicitudActualizada.setNotasInternas(solicitud.getNotasInternas() != null ? solicitud.getNotasInternas() : dto.getNotasInternas());
-        solicitudActualizada.setNotasCliente(solicitud.getNotasCliente() != null ? solicitud.getNotasCliente() : dto.getNotasCliente());
-        solicitudActualizada.setCreatedAt(dto.getCreatedAt());
-        solicitudActualizada.setUpdatedAt(dto.getUpdatedAt());
-        solicitudActualizada.setCreadoPor(dto.getCreadoPor());
-        solicitudActualizada.setActualizadoPor(dto.getActualizadoPor());
+        solicitudActualizada.setId(dto.id());
+        solicitudActualizada.setNumeroSolicitud(solicitud.getNumeroSolicitud() != null ? solicitud.getNumeroSolicitud() : dto.numeroSolicitud());
+        solicitudActualizada.setCliente(solicitud.getCliente() != null ? solicitud.getCliente() : dto.cliente());
+        solicitudActualizada.setServicio(solicitud.getServicio() != null ? solicitud.getServicio() : dto.servicio());
+        solicitudActualizada.setServicioPersonalizado(solicitud.getServicioPersonalizado() != null ? solicitud.getServicioPersonalizado() : dto.servicioPersonalizado());
+        solicitudActualizada.setDescripcion(solicitud.getDescripcion() != null ? solicitud.getDescripcion() : dto.descripcion());
+        solicitudActualizada.setPresupuestoEstimado(solicitud.getPresupuestoEstimado() != null ? solicitud.getPresupuestoEstimado() : dto.presupuestoEstimado());
+        solicitudActualizada.setPrioridad(solicitud.getPrioridad() != null ? solicitud.getPrioridad() : dto.prioridad());
+        solicitudActualizada.setFechaSolicitud(solicitud.getFechaSolicitud() != null ? solicitud.getFechaSolicitud() : dto.fechaSolicitud());
+        solicitudActualizada.setFechaEstimacion(solicitud.getFechaEstimacion() != null ? solicitud.getFechaEstimacion() : dto.fechaEstimacion());
+        solicitudActualizada.setFechaInicio(solicitud.getFechaInicio() != null ? solicitud.getFechaInicio() : dto.fechaInicio());
+        solicitudActualizada.setEstado(solicitud.getEstado() != null ? solicitud.getEstado() : dto.estado());
+        solicitudActualizada.setUsuarioAsignado(solicitud.getUsuarioAsignado() != null ? solicitud.getUsuarioAsignado() : dto.usuarioAsignado());
+        solicitudActualizada.setOrigen(solicitud.getOrigen() != null ? solicitud.getOrigen() : dto.origen());
+        solicitudActualizada.setNotasInternas(solicitud.getNotasInternas() != null ? solicitud.getNotasInternas() : dto.notasInternas());
+        solicitudActualizada.setNotasCliente(solicitud.getNotasCliente() != null ? solicitud.getNotasCliente() : dto.notasCliente());
+        solicitudActualizada.setCreatedAt(dto.createdAt());
+        solicitudActualizada.setUpdatedAt(dto.updatedAt());
+        solicitudActualizada.setCreadoPor(dto.creadoPor());
+        solicitudActualizada.setActualizadoPor(dto.actualizadoPor());
 
         return repositorio.actualizarSolicitud(solicitudActualizada);
     }
 
     @Override
     public void eliminarSolicitud(UUID id) {
-        SolicitudesDto dto = readRepository.obtenerSolicitud(id)
+        SolicitudesDto dto = readRepository.obtenerSolicitudPorId(id)
                 .orElseThrow(() -> new RuntimeException("Solicitud no encontrada con el ID: " + id));
 
         if(dto == null) {
             throw new IllegalArgumentException("El campo de ID no puede estar vacio.");
         }
 
-        repositorio.eliminarSolicitud(dto.getId());
+        repositorio.eliminarSolicitud(dto.id());
     }
 }
