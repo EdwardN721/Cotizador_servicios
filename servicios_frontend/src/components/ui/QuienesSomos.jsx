@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function QuienesSomos() {
     return (
         <>
@@ -9,14 +7,17 @@ export default function QuienesSomos() {
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         <div>
                             <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                                Somos una empresa líder en nuestro sector, comprometida con la excelencia y la innovación. Desde
-                                nuestros inicios, hemos trabajado incansablemente para ofrecer soluciones de alta calidad que superen
-                                las expectativas de nuestros clientes.
+                                Somos una empresa mexicana fundada en 2020, especializada en brindar soluciones integrales de mantenimiento industrial correctivo y preventivo. Desde nuestros inicios, nos hemos enfocado en ofrecer un servicio confiable, seguro y adaptado a las necesidades operativas de nuestros <clientes className=""></clientes>
                             </p>
                             <p className="text-lg text-gray-600 leading-relaxed">
-                                Nuestro equipo está formado por profesionales altamente capacitados que comparten la pasión por la
-                                excelencia y el compromiso con el servicio al cliente.
+                                Gracias a nuestro compromiso con la calidad, la seguridad y la mejora continua, en tan solo cinco años hemos ampliado significativamente nuestro portafolio de servicios, incorporando trabajos especializados como:
                             </p>
+                            <ul className="list-disc list-inside space-y-2 text-gray-700 font-bold my-3">
+                                <li className="text-md text-gray-600 ">Trabajos en caliente (soldadura, corte, etc.).</li>
+                                <li className="text-md text-gray-600">Trabajos en espacios confinados.</li>
+                                <li className="text-md text-gray-600">Trabajos en alturas.</li>
+                                <li className="text-md text-gray-600">Instalaciones y mantenimientos eléctricos.</li>
+                            </ul>
                         </div>
                         <div className="relative">
                             <img

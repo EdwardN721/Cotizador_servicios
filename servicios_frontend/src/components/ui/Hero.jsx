@@ -1,8 +1,7 @@
-import React from "react";
-import Boton from "./Boton.jsx";
+import { Button } from "@/components/ui/Button.jsx"
+import { Link } from 'react-router-dom';
 
 export default function Hero() {
-
     return (
         <div className="relative py-20 px-4 text-center ">
             <div className="text-white container mx-auto max-w-6xl">
@@ -13,13 +12,23 @@ export default function Hero() {
                         className="w-3/6 mx-auto mb-6 bg-white/10 rounded-lg p-4"
                     />
                 </div>
-                <h1 className="text-5xl md:text-6xl font-bold mb-6">Bienvenidos a nuestra empresa</h1>
+                <h1 className="text-5xl md:text-6xl font-bold mb-6">SEGAE</h1>
                 <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    SERVICIOS GENERALES Y ESPECIALIZADOS A.E
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Boton valor="Sobre nosotros" />
-                    <Boton valor="Nuestros servicios" />
+
+
+                    <Button
+                        size="lg"
+                        variant="outline"
+                        className="border-white text-white hover:bg-white hover:text-blue-600 bg-transparent"
+                    >
+                        <Link to="/servicios" className="w-full h-full flex justify-center items-center text-inherit no-underline">
+                            Ver Nuestros Servicios
+                        </Link>
+                    </Button>
+
                 </div>
             </div>
         </div>

@@ -18,8 +18,7 @@ export default function MisionVision() {
                             </CardHeader>
                             <CardContent>
                                 <p className="text-gray-600 leading-relaxed">
-                                    Proporcionar soluciones innovadoras y de alta calidad que impulsen el crecimiento y éxito de nuestros
-                                    clientes, manteniendo siempre los más altos estándares de integridad y excelencia en el servicio.
+                                    Brindar servicios integrales de mantenimiento industrial con altos estándares de calidad, seguridad y eficiencia, adaptados a las necesidades específicas de cada cliente. nos comprometemos con la mejora continua, la innovación y la atención personalizada, para garantizar la máxima operatividad y confiabilidad de los sistemas industriales.
                                 </p>
                             </CardContent>
                         </Card>
@@ -33,8 +32,7 @@ export default function MisionVision() {
                             </CardHeader>
                             <CardContent>
                                 <p className="text-gray-600 leading-relaxed">
-                                    Ser reconocidos como la empresa líder en nuestro sector, destacando por nuestra innovación, calidad y
-                                    compromiso con la sostenibilidad, creando valor para todos nuestros stakeholders.
+                                    Ser una empresa líder a nivel nacional en mantenimiento industrial, reconocida por nuestra excelencia operativa, compromiso con nuestros clientes y capacidad de crecimiento sostenible. aspiramos a expandir nuestros servicios en todo el país, fortaleciendo relaciones de largo plazo con empresas de todos los sectores industriales.
                                 </p>
                             </CardContent>
                         </Card>
