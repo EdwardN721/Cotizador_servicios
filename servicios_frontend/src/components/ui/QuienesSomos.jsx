@@ -2,9 +2,9 @@ export default function QuienesSomos() {
     return (
         <>
             <section className="py-16 px-4">
-                <div className="container mx-auto max-w-6xl text-center mb-12">
-                    <h2 className="text-4xl font-bold mb-6">Nuestra Identidad</h2>
-                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                <div className="container mx-auto max-w-6xl mb-12">
+                    <h2 className="text-4xl font-bold mb-6 text-center">Nuestra Identidad</h2>
+                    <div className="grid text-justify md:grid-cols-2 gap-12 items-center">
                         <div>
                             <p className="text-lg text-gray-600 leading-relaxed mb-6">
                                 Somos una empresa mexicana fundada en 2020, especializada en brindar soluciones integrales de mantenimiento industrial correctivo y preventivo. Desde nuestros inicios, nos hemos enfocado en ofrecer un servicio confiable, seguro y adaptado a las necesidades operativas de nuestros <clientes className=""></clientes>

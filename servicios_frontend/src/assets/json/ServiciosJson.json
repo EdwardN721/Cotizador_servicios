@@ -1,0 +1,59 @@
+{
+  "servicios": [
+    {
+      "title": "Mantenimiento industrial y especializado",
+      "description": "",
+      "icon": "code",
+      "features": [
+        "Trabajos en caliente: Corte, soldadura control de temperatura y seguridad especialziada",
+        "Soldadura TIG y trabajos en acero inoxidable: Alta  precisión indsutrial y estructuras especiales."
+      ]
+    },
+    {
+      "title": "Pailería",
+      "description": "Técnica utilizada en la fabricación y reparación de estructuras metálicas",
+      "icon": "smartphone",
+      "features": [
+        "Fabricación",
+        "Reparación y montaje de estructuras metálicas y contenedores"
+      ]
+    },
+    {
+      "title": "Servicios de corte y herramientas especializadas",
+      "description": "Uso profesional de herramientas de corte para: ",
+      "icon": "trending-up",
+      "features": [
+        "Materiales distintos.",
+        "Acabados limpios.",
+        "Acabados seguros."
+      ]
+    },
+    {
+      "title": "Instalaciones hidráulicas y sanitarias",
+      "description": "Plomería en general",
+      "icon": "settings",
+      "features": [
+        "Mantenimiento, reparación y mejoras.",
+        "Instalación de tubería CPVC para agua fria y caliente."
+      ]
+    },
+    {
+      "title": "Instalaciones eléctricas y automatización",
+      "description": "",
+      "icon": "shield",
+      "features": [
+        "Diseño e implementación de instalaciones eléctricas para casa habitación e industria.",
+        "Soluciones de automatización industrial, control de procesos y eficiencia energética."
+      ]
+    },
+    {
+      "title": "Obra civil",
+      "description": "Ejecución de trabajos civiles como cimentaciones, pisos industriales, ampliaciones estructurales y adecuaciones para instalaciones.",
+      "icon": "zap",
+      "features": [
+
+      ]
+    }
+  ]
+}
+

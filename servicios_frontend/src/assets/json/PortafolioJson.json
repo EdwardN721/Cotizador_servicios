@@ -1,0 +1,49 @@
+{
+  "portfolioServicios": [
+    {
+      "titulo": "PROYECTO GOLDEN GOOSE",
+      "descripcion": "Las actividades contempladas para este proyecto contienen la manipulación, almacenamiento y transporte de materiales, así como la implementación de medidas de seguridad y control de calidad necesarias para garantizar el éxito del proyecto en los trabajos de desmantelamiento de tuberías obsoletas, así como en la instalación de nuevos soportes para tubería de 10”.",
+      "categoria": ".....",
+      "imagenes": [
+        {
+          "url": "../../../src/assets/images/portafolio/GoldenGoose.jpg",
+          "titulo": "Estructura",
+          "descripcion": "Estructrua"
+        },
+        {
+          "url": "../../../src/assets/images/portafolio/GoldenGoose2.jpg",
+          "titulo": "Estructura 2",
+          "descripcion": "Estructura 2"
+        },
+        {
+          "url": "../../../src/assets/images/portafolio/GoldenGoose3.jpg",
+          "titulo": "Estructrura 3",
+          "descripcion": "Estructura 3"
+        },
+        {
+          "url": "../../../src/assets/images/portafolio/GoldenGoose4.jpg",
+          "titulo": "Estructrura 4",
+          "descripcion": "Estructura 4"
+        }
+      ]
+    },
+    {
+      "titulo": "PROYECTO BREAKER TRIP",
+      "descripcion": "Las actividades contempladas en este documento comprenden la manipulación, almacenamiento y transporte de materiales, así como la implementación de medidas de seguridad y control de calidad necesarias para garantizar el éxito del proyecto en los trabajos de desmantelamiento de chute y mezzanine y bafle deshabilitados, así como la instalación de nuevo chute de salt, mezzanine y protecciones. Se llevó a cabo la aplicación de primario anticorrosivo así como la aplicación de esmalte de color a especificación del cliente.",
+      "categoria": "......",
+      "imagenes": [
+        {
+          "url": "../../../src/assets/images/portafolio/BreakerTrip.jpg",
+          "titulo": "Estructura",
+          "descripcion": "Estructura."
+        },
+        {
+          "url": "../../../src/assets/images/portafolio/BreakerTrip2.jpg",
+          "titulo": "Estructura 2",
+          "descripcion": "Estructura 2."
+        }
+      ]
+
+    }
+  ]
+}
