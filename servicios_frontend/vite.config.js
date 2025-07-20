@@ -13,4 +13,9 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  /*
+  server: { //Exponer el HOST
+    host: true, // 👈 esto permite aceptar conexiones externas
+    port: 5173  // puedes cambiar el puerto si lo deseas
+  }*/
 })

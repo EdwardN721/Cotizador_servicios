@@ -1,32 +1,64 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/Button.jsx"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/Card.jsx"
-import { Mail, Phone, MapPin, Send } from "lucide-react"
+import {  AlertCircle, Mail, Phone, MapPin, Send } from "lucide-react"
+import SelectMultiple from "@/components/ui/SelectMultiple.jsx"
 
 export default function Formulario() {
+    // Validar formulario
     const [formData, setFormData] = useState({
-        name: "",
+        nombre: "",
         email: "",
-        phone: "",
-        service: "",
-        message: "",
+        servicios: [], // múltiple
+        mensaje: ""
     })
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value,
-        }))
+    const [errors, setErrors] = useState({
+        nombre: false,
+        email: false,
+        servicios: false
+    })
+
+
+    const validarFormulario = () => {
+        const nuevosErrores = {
+            nombre: formData.nombre.trim() === "",
+            email: formData.email.trim() === "",
+            servicios: formData.servicios.length === 0
+        }
+        setErrors(nuevosErrores)
+        return !Object.values(nuevosErrores).some((error) => error)
     }
+
+    useEffect(() => {
+        if (!Array.isArray(formData.servicios)) {
+            setFormData({ ...formData, servicios: [] });
+        }
+    }, []);
+
+
+    /*
+        const handleInputChange = (e) => {
+            const {options} = e.target;
+            const selectedValues = [];
+            for (let i = 0; i < options.length; i++) {
+                if (options[i].selected) {
+                    selectedValues.push(options[i].value);
+                }
+            }
+            setFormData({...formData, service: selectedValues});
+        };
+    */
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log("Form submitted:", formData)
-        // Aquí puedes agregar la lógica para enviar el formulario
-        alert("Mensaje enviado correctamente!")
+        if (validarFormulario()) {
+            console.log("Form submitted:", formData)
+            // Aquí puedes agregar la lógica para enviar el formulario
+            alert("Mensaje enviado correctamente!")
+        }
     }
 
     return (
@@ -34,9 +66,9 @@ export default function Formulario() {
             <div className="container mx-auto max-w-6xl">
                 <div className="grid md:grid-cols-2 gap-12">
                     <div>
-                        <h2 className="text-4xl font-bold mb-6">¿Listo para Comenzar?</h2>
+                        <h2 className="text-4xl font-bold mb-6">Contacto</h2>
                         <p className="text-lg text-gray-600 mb-8">
-                            Cuéntanos sobre tu proyecto y te ayudaremos a encontrar la mejor solución para tu negocio.
+                            Si deseas más detalles, no dudes en contactarnos:
                         </p>
 
                         <div className="space-y-4">
@@ -73,10 +105,20 @@ export default function Formulario() {
                                             id="name"
                                             name="name"
                                             value={formData.name}
-                                            onChange={handleInputChange}
-                                            required
-                                            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            placeholder="Tú Nombre completo"
+                                            onChange={(e) =>
+                                                setFormData({ ...formData, nombre: e.target.value })
+                                            }
+                                            className={`w-full p-2 border rounded-md transition-all duration-300 ${
+                                                errors.nombre ? "border-red-500 bg-red-50" : "border-gray-300"
+                                            }`}
                                         />
+                                        {errors.nombre && (
+                                            <p className="text-red-500 text-sm mt-1 flex items-center">
+                                                <AlertCircle className="w-4 h-4 mr-1 text-red-500" />
+                                                Campo requerido
+                                            </p>
+                                        )}
                                     </div>
                                     <div>
                                         <label htmlFor="email" className="block text-sm font-medium mb-1">
@@ -86,60 +128,48 @@ export default function Formulario() {
                                             id="email"
                                             name="email"
                                             type="email"
+                                            placeholder="Correo electrónico"
                                             value={formData.email}
-                                            onChange={handleInputChange}
-                                            required
-                                            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            onChange={(e) =>
+                                                setFormData({ ...formData, email: e.target.value })
+                                            }
+                                            className={`w-full p-2 border rounded-md transition-all duration-300 ${
+                                                errors.email ? "border-red-500 bg-red-50" : "border-gray-300"
+                                            }`}
                                         />
+                                        {errors.email && (
+                                            <p className="text-red-500 text-sm mt-1 flex items-center">
+                                                <AlertCircle className="w-4 h-4 mr-1 text-red-500" />
+                                                Campo requerido
+                                            </p>
+                                        )}
                                     </div>
-                                </div>
-
-                                <div>
-                                    <label htmlFor="phone" className="block text-sm font-medium mb-1">
-                                        Teléfono
-                                    </label>
-                                    <input
-                                        id="phone"
-                                        name="phone"
-                                        value={formData.phone}
-                                        onChange={handleInputChange}
-                                        className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                    />
                                 </div>
 
                                 <div>
                                     <label htmlFor="service" className="block text-sm font-medium mb-1">
                                         Servicio de Interés
                                     </label>
-                                    <select
-                                        id="service"
-                                        name="service"
-                                        value={formData.service}
-                                        onChange={handleInputChange}
-                                        className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                    >
-                                        <option value="">Selecciona un servicio</option>
-                                        <option value="desarrollo-web">Desarrollo Web</option>
-                                        <option value="app-movil">Aplicaciones Móviles</option>
-                                        <option value="marketing-digital">Marketing Digital</option>
-                                        <option value="consultoria-it">Consultoría IT</option>
-                                        <option value="ciberseguridad">Ciberseguridad</option>
-                                        <option value="automatizacion">Automatización</option>
-                                    </select>
+                                    <SelectMultiple
+                                        selected={formData.servicios}
+                                        setSelected={(servicios) => setFormData({ ...formData, servicios })}
+                                        error={errors.servicios}
+                                    />
                                 </div>
 
                                 <div>
-                                    <label htmlFor="message" className="block text-sm font-medium mb-1">
-                                        Mensaje *
+                                    <label htmlFor="mensaje" className="block text-sm font-medium mb-1">
+                                        Mensaje
                                     </label>
                                     <textarea
-                                        id="message"
-                                        name="message"
-                                        value={formData.message}
-                                        onChange={handleInputChange}
+                                        id="mensaje"
+                                        name="mensaje"
+                                        value={formData.mensaje}
+                                        onChange={(e) =>
+                                            setFormData({ ...formData, mensaje: e.target.value })
+                                        }
                                         rows={4}
-                                        placeholder="Cuéntanos sobre tu proyecto..."
-                                        required
+                                        placeholder="Envíanos un comentario..."
                                         className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-vertical"
                                     />
                                 </div>
