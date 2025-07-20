@@ -2,9 +2,9 @@
 /servicios_frontend/node_modules/
 
 # Ignorar archivos de build de React
-/servicios-frontend/build/
+/servicios_frontend/build/
 
-/servicios-frontend/src/assets/images/
+/servicios_frontend/src/assets/images/
 
 # Ignorar logs
 npm-debug.log*
