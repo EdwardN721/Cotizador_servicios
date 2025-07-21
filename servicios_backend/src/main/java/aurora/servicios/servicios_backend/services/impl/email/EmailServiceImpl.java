@@ -15,6 +15,7 @@ import org.thymeleaf.context.Context;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Service
 public class EmailServiceImpl implements EmailService {
@@ -39,15 +40,14 @@ public class EmailServiceImpl implements EmailService {
 
             String nombre = email.nombre();
             String correo = email.correo();
-            String servicio = email.servicios();
+            List<String> servicio = email.servicios();
             String mensaje = email.mensaje();
 
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
             String formateada = now.format(formatter);
 
-            String mensajeCompleto = String.format("Hola buen día, soy %s, estoy interesad@ por los servicios ofertados de: %s. <br> Mi dirección de correo eléctronico es: %s <br> *Adicional: %s. <br> Espero atentamente tu respuesta. Gracias, saludos cordiales.",
-                    nombre, correo, servicio, mensaje);
+            String mensajeCompleto = generarMensaje(nombre, servicio, correo, mensaje);
             String fecha = "Mensaje enviado el: " + formateada;
 
             Context context = new Context();
@@ -67,4 +67,16 @@ public class EmailServiceImpl implements EmailService {
             return "Error inesperado: " + ex.getMessage();
         }
     }
+
+    public String generarMensaje(String nombre, List<String> serviciosArray, String correo, String notasAdicionales) {
+        String servicios = String.join(", ", serviciosArray);
+
+        return "Hola, buen día.<br>" +
+                "Mi nombre es <strong>" + nombre + "</strong> y estoy interesad@ en los siguientes servicios: <strong>" + servicios + "</strong>.<br>" +
+                "Puedes contactarme a través de mi correo electrónico: <strong>" + correo + "</strong><br>" +
+                "<em>Notas adicionales:</em> " + notasAdicionales + "<br>" +
+                "Quedo atent@ a tu respuesta. Muchas gracias y saludos cordiales.";
+    }
+
+
 }

@@ -1,11 +1,13 @@
 package aurora.servicios.servicios_backend.dtos;
 
+import java.util.List;
+
 public record EmailDto(
         String destinatario,
         String nombre,
         String asunto,
         String correo,
-        String servicios,
+        List<String> servicios,
         String mensaje
 ) {
     @Override
