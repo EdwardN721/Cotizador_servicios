@@ -7,7 +7,7 @@ export default function QuienesSomos() {
                     <div className="grid text-justify md:grid-cols-2 gap-12 items-center">
                         <div>
                             <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                                Somos una empresa mexicana fundada en 2020, especializada en brindar soluciones integrales de mantenimiento industrial correctivo y preventivo. Desde nuestros inicios, nos hemos enfocado en ofrecer un servicio confiable, seguro y adaptado a las necesidades operativas de nuestros <clientes className=""></clientes>
+                                Somos una empresa mexicana fundada en 2020, especializada en brindar soluciones integrales de mantenimiento industrial correctivo y preventivo. Desde nuestros inicios, nos hemos enfocado en ofrecer un servicio confiable, seguro y adaptado a las necesidades operativas de nuestros clientes.
                             </p>
                             <p className="text-lg text-gray-600 leading-relaxed">
                                 Gracias a nuestro compromiso con la calidad, la seguridad y la mejora continua, en tan solo cinco años hemos ampliado significativamente nuestro portafolio de servicios, incorporando trabajos especializados como:

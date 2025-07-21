@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card.j
 export default function MisionVision() {
     return (
         <>
-                <Card></Card>
             <section className="py-16 px-4 bg-gray-50">
                 <div className="container mx-auto max-w-6xl">
                     <h2 className="text-4xl font-bold text-center mb-12">Misión y Visión</h2>

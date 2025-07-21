@@ -1,5 +1,5 @@
 import React from "react"
-import {AlertCircle} from "lucide-react";
+import {AlertCircle, CheckCircle} from "lucide-react";
 
 const servicios = [
     "Mantenimiento industrial y especializado",
@@ -22,31 +22,33 @@ export default function SelectMultiple({ selected, setSelected, error }) {
         setSelected(nuevo); // ← aquí está el cambio clave
     };
 
+    const esValido = serviciosSeleccionados.length > 0;
 
     return (
         <div>
-            <label className="font-medium">Servicios que te interesan</label>
             <div className={`flex flex-wrap gap-2 mt-2 ${error ? "border border-red-500 p-2 rounded" : ""}`}>
                 {servicios.map((servicio) => (
                     <button
                         key={servicio}
                         type="button"
-                        className={`flex items-center gap-2 px-3 py-1 rounded-full border transition-all duration-200 ease-in-out ${
-                            serviciosSeleccionados.includes(servicio)
-                                ? "bg-blue-600 text-white border-blue-600 shadow-md animate-pulseFast"
-                                : "bg-white text-gray-700 border-gray-300 hover:bg-blue-100"
+                        className={`flex flex-wrap gap-2 mt-2 p-2 rounded-md border transition-all ${
+                            error
+                                ? "border-red-500 bg-red-50"
+                                : esValido
+                                    ? "border-green-500 bg-green-50"
+                                    : "border-gray-300"
                         }`}
                         onClick={() => toggleServicio(servicio)}
                     >
-                        {serviciosSeleccionados.includes(servicio) && <span>✅</span>}
+                        {serviciosSeleccionados.includes(servicio) && <CheckCircle className="w-4 h-4" />}
                         {servicio}
                     </button>
                 ))}
             </div>
             {error && (
-                <p className="text-red-500 text-sm mt-1 flex items-center">
+                <p className="text-red-500 text-sm mt-2 flex items-center">
                     <AlertCircle className="w-4 h-4 mr-1 text-red-500" />
-                    Selecciona al menos un servicio!.
+                    Selecciona al menos un servicio.
                 </p>
             )}
         </div>

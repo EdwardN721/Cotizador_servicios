@@ -9,6 +9,7 @@ export default function Main() {
     return (
         <>
             <QuienesSomos />
+            <Historia />
             <MisionVision />
             <Valores />
             <Historia />
