@@ -1,12 +1,39 @@
-# React + Vite
+# Servicios Frontend
+## React + Vite
+### Cómo cargar este proyecto
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sigue estos pasos para tener el proyecto listo en tu entorno local:
 
-Currently, two official plugins are available:
+1. Descarga el proyecto
+   - Clona este repositorio con el siguiente comando 
+   ```bash
+   git clone https://github.com/EdwardN721/Cotizador_servicios.git 
+   ```
+   O bien, haz clic en el botón “Code” y selecciona “Download ZIP”. Descomprime el archivo en tu carpeta de preferencia.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2. Accede a la carpeta del proyecto
+   - Abre uina terminal y navega a la carpeta del proyecto: 
+   ```bash
+   cd nombre-proyecto
+   ```
 
-## Expanding the ESLint configuration
+3. Instala las depedencias
+   - Asegúrate de tener instalado Node.js (si es un proyecto JavaScript) o el entorno requerido.
+   - Instala las dependencias con:
+   ```bash
+   npm install
+   ```
+     O usa el gestor correspondiente como pip install -r requirements.txt, según el lenguaje del proyecto.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+4. Ejecuta el proyecto
+   - Para levantar el servidor local o comenzar la ejecución: 
+   ```bash
+   npm run dev
+   ```
+
+5. Acceder desde el navegador
+   - Abre tu navegador en: 
+   ```bash
+   http://localhost:5173/
+   ```
+   *O en el puerto que hayas definido*
