@@ -1,7 +1,7 @@
 import { ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/Button.jsx"
 
-export default function Menu() {
+export default function Menu({ onScrollToForm }) {
     return (
         <>
             <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur">
@@ -26,7 +26,7 @@ export default function Menu() {
                     </div>
 
                     {/* Botón de contacto */}
-                    <Button className="text-sm sm:text-base">Contactar</Button>
+                    <Button onClick={onScrollToForm} className="text-sm sm:text-base">Contactar</Button>
                 </div>
             </header>
 

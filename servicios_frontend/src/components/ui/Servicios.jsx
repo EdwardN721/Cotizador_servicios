@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/Button.jsx"
 import { servicios } from "../../assets/json/ServiciosJson.json";
 
-export default function Servicios() {
+export default function Servicios({ onScrollToForm }) {
     
     return (
         <>
@@ -33,7 +33,7 @@ export default function Servicios() {
                                     </ul>
 
                                     <div className="mt-auto pt-4">
-                                        <Button className="w-full bg-transparent" variant="outline">
+                                        <Button className="w-full bg-transparent" onClick={onScrollToForm} variant="outline">
                                             Más Información
                                         </Button>
                                     </div>

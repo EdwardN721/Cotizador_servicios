@@ -115,11 +115,6 @@ export default function Carrusel() {
                                         <div className="flex flex-col justify-center">
                                             <h3 className="text-3xl font-bold mb-4">{servicio.titulo}</h3>
                                             <p className="text-gray-600 mb-6 text-lg text-justify leading-relaxed mr-4">{servicio.descripcion}</p>
-                                            <div className="flex gap-3">
-                                                <Button className="flex-1 mt-3">
-                                                    Solicitar Cotización
-                                                </Button>
-                                            </div>
                                         </div>
                                     </div>
                                 </Card>

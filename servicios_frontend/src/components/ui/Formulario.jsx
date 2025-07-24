@@ -1,12 +1,12 @@
 "use client"
 
-import {useState, useEffect} from "react"
+import {useState, useEffect, forwardRef} from "react"
 import {Button} from "@/components/ui/Button.jsx"
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/Card.jsx"
 import {AlertCircle, Mail, Phone, MapPin, Send, CheckCircle} from "lucide-react"
 import SelectMultiple from "@/components/ui/SelectMultiple.jsx"
 
-export default function Formulario() {
+const Formulario = forwardRef((props, ref) => {
     // Validar formulario
     const [formData, setFormData] = useState({
         nombre: "",
@@ -96,7 +96,7 @@ export default function Formulario() {
                 } else {
                     alert("Hubo un error al enviar el formulario.");
                 }
-            }catch(error){
+            } catch (error) {
                 console.error("Error al enviar:", error);
                 alert("Error de conexión con el servidor.");
             }
@@ -145,158 +145,162 @@ export default function Formulario() {
                         </div>
                     </div>
 
-                    <Card>
-                        <CardHeader>
-                            <CardTitle className="text-3xl">Solicita una Cotización</CardTitle>
-                            <CardDescription>
-                                Completa el formulario y nos pondremos en contacto contigo en menos de 24 horas
-                            </CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                            <form onSubmit={handleSubmit} className="space-y-4">
-                                <div className="grid grid-cols-1 gap-4">
-                                    <div>
-                                        <label htmlFor="nombre" className="block text-sm font-medium mb-1">
-                                            Nombre
-                                        </label>
-                                        <input
-                                            id="nombre"
-                                            name="nombre"
-                                            required
-                                            value={formData.nombre}
-                                            placeholder="Tú nombre completo"
-                                            onChange={handleChange}
-                                            className={`w-full p-2 rounded-md transition outline-none
+                    <div ref={ref}>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle className="text-3xl">Solicita una Cotización</CardTitle>
+                                <CardDescription>
+                                    Completa el formulario y nos pondremos en contacto contigo en menos de 24 horas
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <form onSubmit={handleSubmit} className="space-y-4">
+                                    <div className="grid grid-cols-1 gap-4">
+                                        <div>
+                                            <label htmlFor="nombre" className="block text-sm font-medium mb-1">
+                                                Nombre
+                                            </label>
+                                            <input
+                                                id="nombre"
+                                                name="nombre"
+                                                required
+                                                value={formData.nombre}
+                                                placeholder="Tú nombre completo"
+                                                onChange={handleChange}
+                                                className={`w-full p-2 rounded-md transition outline-none
                                             ${
-                                                !tocado.nombre
-                                                    ? "border border-gray-300 bg-white"
-                                                    : validos.nombre
-                                                        ? "border border-green-500 bg-green-50 text-green-700 placeholder-green-400"
-                                                        : "border border-red-500 bg-red-50 text-red-700 placeholder-red-400"}`}
+                                                    !tocado.nombre
+                                                        ? "border border-gray-300 bg-white"
+                                                        : validos.nombre
+                                                            ? "border border-green-500 bg-green-50 text-green-700 placeholder-green-400"
+                                                            : "border border-red-500 bg-red-50 text-red-700 placeholder-red-400"}`}
 
-                                        />
-                                        {tocado.nombre && (
-                                            validos.nombre ? (
-                                                <p className="flex items-center text-green-600 text-sm mt-1">
-                                                    <CheckCircle className="w-4 h-4 mr-1"/>
-                                                    ¡Correcto!
-                                                </p>
-                                            ) : (
-                                                <p className="flex items-center text-red-500 text-sm mt-1">
-                                                    <AlertCircle className="w-4 h-4 mr-1"/>
-                                                    Este campo requiere al menos 10 caracteres
-                                                </p>
-                                            )
-                                        )}
-                                    </div>
-                                    <div>
-                                        <label htmlFor="asunto" className="block text-sm font-medium mb-1">
-                                            Asunto
-                                        </label>
-                                        <input
-                                            id="asunto"
-                                            name="asunto"
-                                            value={formData.asunto}
-                                            placeholder="Personaliza el asunto"
-                                            onChange={handleChange}
-                                            required
-                                            className={`w-full p-2 rounded-md transition outline-none
+                                            />
+                                            {tocado.nombre && (
+                                                validos.nombre ? (
+                                                    <p className="flex items-center text-green-600 text-sm mt-1">
+                                                        <CheckCircle className="w-4 h-4 mr-1"/>
+                                                        ¡Correcto!
+                                                    </p>
+                                                ) : (
+                                                    <p className="flex items-center text-red-500 text-sm mt-1">
+                                                        <AlertCircle className="w-4 h-4 mr-1"/>
+                                                        Este campo requiere al menos 10 caracteres
+                                                    </p>
+                                                )
+                                            )}
+                                        </div>
+                                        <div>
+                                            <label htmlFor="asunto" className="block text-sm font-medium mb-1">
+                                                Asunto
+                                            </label>
+                                            <input
+                                                id="asunto"
+                                                name="asunto"
+                                                value={formData.asunto}
+                                                placeholder="Personaliza el asunto"
+                                                onChange={handleChange}
+                                                required
+                                                className={`w-full p-2 rounded-md transition outline-none
                                             ${
-                                                !tocado.asunto
-                                                    ? "border border-gray-300 bg-white"
-                                                    : validos.asunto
-                                                        ? "border border-green-500 bg-green-50 text-green-700 placeholder-green-400"
-                                                        : "border border-red-500 bg-red-50 text-red-700 placeholder-red-400"}`}
+                                                    !tocado.asunto
+                                                        ? "border border-gray-300 bg-white"
+                                                        : validos.asunto
+                                                            ? "border border-green-500 bg-green-50 text-green-700 placeholder-green-400"
+                                                            : "border border-red-500 bg-red-50 text-red-700 placeholder-red-400"}`}
 
-                                        />
-                                        {tocado.asunto && (
-                                            validos.asunto ? (
-                                                <p className="flex items-center text-green-600 text-sm mt-1">
-                                                    <CheckCircle className="w-4 h-4 mr-1"/>
-                                                    ¡Correcto!
-                                                </p>
-                                            ) : (
-                                                <p className="flex items-center text-red-500 text-sm mt-1">
-                                                    <AlertCircle className="w-4 h-4 mr-1"/>
-                                                    Este campo requiere al menos 5 caracteres
-                                                </p>
-                                            )
-                                        )}
-                                    </div>
-                                    <div>
-                                        <label htmlFor="correo" className="block text-sm font-medium mb-1">
-                                            correo
-                                        </label>
-                                        <input
-                                            id="correo"
-                                            name="correo"
-                                            type="correo"
-                                            required
-                                            placeholder="Correo electrónico"
-                                            value={formData.correo}
-                                            onChange={handleChange}
-                                            className={`w-full p-2 rounded-md transition outline-none
+                                            />
+                                            {tocado.asunto && (
+                                                validos.asunto ? (
+                                                    <p className="flex items-center text-green-600 text-sm mt-1">
+                                                        <CheckCircle className="w-4 h-4 mr-1"/>
+                                                        ¡Correcto!
+                                                    </p>
+                                                ) : (
+                                                    <p className="flex items-center text-red-500 text-sm mt-1">
+                                                        <AlertCircle className="w-4 h-4 mr-1"/>
+                                                        Este campo requiere al menos 5 caracteres
+                                                    </p>
+                                                )
+                                            )}
+                                        </div>
+                                        <div>
+                                            <label htmlFor="correo" className="block text-sm font-medium mb-1">
+                                                correo
+                                            </label>
+                                            <input
+                                                id="correo"
+                                                name="correo"
+                                                type="correo"
+                                                required
+                                                placeholder="Correo electrónico"
+                                                value={formData.correo}
+                                                onChange={handleChange}
+                                                className={`w-full p-2 rounded-md transition outline-none
                                             ${
-                                                !tocado.correo
-                                                    ? "border border-gray-300 bg-white"
-                                                    : validos.correo
-                                                        ? "border border-green-500 bg-green-50 text-green-700 placeholder-green-400"
-                                                        : "border border-red-500 bg-red-50 text-red-700 placeholder-red-400"}`}
+                                                    !tocado.correo
+                                                        ? "border border-gray-300 bg-white"
+                                                        : validos.correo
+                                                            ? "border border-green-500 bg-green-50 text-green-700 placeholder-green-400"
+                                                            : "border border-red-500 bg-red-50 text-red-700 placeholder-red-400"}`}
 
-                                        />
-                                        {tocado.correo && (
-                                            validos.correo ? (
-                                                <p className="flex items-center text-green-600 text-sm mt-1">
-                                                    <CheckCircle className="w-4 h-4 mr-1"/>
-                                                    ¡Correcto!
-                                                </p>
-                                            ) : (
-                                                <p className="flex items-center text-red-500 text-sm mt-1">
-                                                    <AlertCircle className="w-4 h-4 mr-1"/>
-                                                    Ingresa una dirección de correo electrónico válida!.
-                                                </p>
-                                            )
-                                        )}
+                                            />
+                                            {tocado.correo && (
+                                                validos.correo ? (
+                                                    <p className="flex items-center text-green-600 text-sm mt-1">
+                                                        <CheckCircle className="w-4 h-4 mr-1"/>
+                                                        ¡Correcto!
+                                                    </p>
+                                                ) : (
+                                                    <p className="flex items-center text-red-500 text-sm mt-1">
+                                                        <AlertCircle className="w-4 h-4 mr-1"/>
+                                                        Ingresa una dirección de correo electrónico válida!.
+                                                    </p>
+                                                )
+                                            )}
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div>
-                                    <label htmlFor="service" className="block text-sm font-medium mb-1">
-                                        Servicio de Interés
-                                    </label>
-                                    <SelectMultiple
-                                        selected={formData.servicios}
-                                        setSelected={(servicios) => setFormData({...formData, servicios})}
-                                        error={errors.servicios}
-                                    />
-                                </div>
+                                    <div>
+                                        <label htmlFor="service" className="block text-sm font-medium mb-1">
+                                            Servicio de Interés
+                                        </label>
+                                        <SelectMultiple
+                                            selected={formData.servicios}
+                                            setSelected={(servicios) => setFormData({...formData, servicios})}
+                                            error={errors.servicios}
+                                        />
+                                    </div>
 
-                                <div>
-                                    <label htmlFor="mensaje" className="block text-sm font-medium mb-1">
-                                        Mensaje
-                                    </label>
-                                    <textarea
-                                        id="mensaje"
-                                        name="mensaje"
-                                        value={formData.mensaje}
-                                        onChange={(e) =>
-                                            setFormData({...formData, mensaje: e.target.value})
-                                        }
-                                        rows={4}
-                                        placeholder="Envíanos un comentario..."
-                                        className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-vertical"
-                                    />
-                                </div>
+                                    <div>
+                                        <label htmlFor="mensaje" className="block text-sm font-medium mb-1">
+                                            Mensaje
+                                        </label>
+                                        <textarea
+                                            id="mensaje"
+                                            name="mensaje"
+                                            value={formData.mensaje}
+                                            onChange={(e) =>
+                                                setFormData({...formData, mensaje: e.target.value})
+                                            }
+                                            rows={4}
+                                            placeholder="Envíanos un comentario..."
+                                            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-vertical"
+                                        />
+                                    </div>
 
-                                <Button type="submit" className="w-full">
-                                    <Send className="w-4 h-4 mr-2"/>
-                                    Enviar Mensaje
-                                </Button>
-                            </form>
-                        </CardContent>
-                    </Card>
+                                    <Button type="submit" className="w-full">
+                                        <Send className="w-4 h-4 mr-2"/>
+                                        Enviar Mensaje
+                                    </Button>
+                                </form>
+                            </CardContent>
+                        </Card>
+                    </div>
                 </div>
             </div>
         </section>
-    )
-}
+    );
+});
+
+export default Formulario;
