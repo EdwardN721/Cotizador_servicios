@@ -5,6 +5,7 @@ import {Button} from "@/components/ui/Button.jsx"
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/Card.jsx"
 import {AlertCircle, Mail, Phone, MapPin, Send, CheckCircle} from "lucide-react"
 import SelectMultiple from "@/components/ui/SelectMultiple.jsx"
+import { toast } from 'react-toastify';
 
 const Formulario = forwardRef((props, ref) => {
     // Validar formulario
@@ -92,13 +93,13 @@ const Formulario = forwardRef((props, ref) => {
                 console.log(response);
                 if (response.ok) {
                     console.log("Form submitted:", formData);
-                    alert("Mensaje enviado correctamente!");
+                    toast.success("Mensaje enviado correctamente!");
                 } else {
-                    alert("Hubo un error al enviar el formulario.");
+                    toast.error("⚠️ Hubo un error al enviar el formulario.");
                 }
             } catch (error) {
                 console.error("Error al enviar:", error);
-                alert("Error de conexión con el servidor.");
+                toast.error("❌ Error de conexión con el servidor.");
             }
 
         }

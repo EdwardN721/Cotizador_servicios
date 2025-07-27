@@ -1,9 +1,24 @@
 import React from "react";
 import { Separator } from "@/components/ui/Separator.jsx"
-import { Button } from "@/components/ui/Button.jsx"
-import { Mail, Phone, MapPin } from "lucide-react"
+import { Mail, Phone, MapPin  } from "lucide-react"
+import { FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
 
 export default function Footer() {
+    const social = [
+        {
+            name: "Instagram",
+            icon: <FaInstagram />,
+            url: "https://www.instagram.com/segae2020/",
+            color: "hover:text-pink-500",
+        },
+        {
+            name: "LinkedIn",
+            icon: <FaLinkedin />,
+            url: "https://linkedin.com/in/miUsuario2000",
+            color: "hover:text-blue-600",
+        },
+    ];
+
     return (
         <>
             <footer className="py-12 px-4 bg-gray-900 text-white">
@@ -43,13 +58,8 @@ export default function Footer() {
                                     </a>
                                 </div>
                                 <div>
-                                    <a href="/services" className="text-gray-300 hover:text-white">
+                                    <a href="/servicios" className="text-gray-300 hover:text-white">
                                         Servicios
-                                    </a>
-                                </div>
-                                <div>
-                                    <a href="#equipo" className="text-gray-300 hover:text-white">
-                                        Equipo
                                     </a>
                                 </div>
                             </div>
@@ -57,27 +67,20 @@ export default function Footer() {
                         <div>
                             <h3 className="text-xl font-semibold mb-4">Síguenos</h3>
                             <div className="flex gap-4">
-                                <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="text-white border-white hover:bg-white hover:text-gray-900 bg-transparent"
-                                >
-                                    LinkedIn
-                                </Button>
-                                <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="text-white border-white hover:bg-white hover:text-gray-900 bg-transparent"
-                                >
-                                    Twitter
-                                </Button>
-                                <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="text-white border-white hover:bg-white hover:text-gray-900 bg-transparent"
-                                >
-                                    Facebook
-                                </Button>
+                                {social.map((item) => (
+                                    <a
+                                        key={item.name}
+                                        href={item.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={`text-2xl hover:scale-110 transition-transform duration-200
+                                          focus:outline-none focus:ring-0 focus:ring-pink-400
+                                          rounded ${item.color}`}
+                                        aria-label={`Ir a ${item.name}`}
+                                    >
+                                        {item.icon}
+                                    </a>
+                                ))}
                             </div>
                         </div>
                     </div>
