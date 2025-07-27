@@ -26,6 +26,12 @@ public class EmailConfig {
         properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");
+
+        properties.put("mail.smtp.ssl.trust", "smtp.gmail.com"); // Gmail verifica el certificado SSL del servidor.
+        properties.put("mail.smtp.connectiontimeout", "5000"); // milisegundos Tiempo máximo para establecer conexión con el servidor SMTP.
+        properties.put("mail.smtp.timeout", "5000"); // Tiempo límite para esperar una respuesta del servidor (después de conectarse).
+        properties.put("mail.smtp.writetimeout", "5000"); // Tiempo máximo para enviar datos al servidor SMTP
+
         return properties;
     }
 
