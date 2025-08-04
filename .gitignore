@@ -4,7 +4,7 @@
 # Ignorar archivos de build de React
 /servicios_frontend/build/
 
-/servicios_frontend/src/assets/images/
+# /servicios_frontend/src/assets/images/
 
 # Ignorar logs
 npm-debug.log*

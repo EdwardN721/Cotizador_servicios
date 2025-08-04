@@ -6,7 +6,7 @@ import ServiciosPage from './js/serviciosPage.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <BrowserRouter>
+        <BrowserRouter basename="/Cotizador_servicios/">
             <Routes>
                 <Route path="/" element={<App />} />
                 <Route path="/servicios" element={<ServiciosPage />} />

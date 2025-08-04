@@ -12,7 +12,6 @@ export default function Main() {
             <Historia />
             <MisionVision />
             <Valores />
-            <Historia />
             <PorQueElegirnos />
         </>
     );

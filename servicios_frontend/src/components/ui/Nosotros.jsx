@@ -1,3 +1,5 @@
+import trabajo from "@/assets/images/trabajo.png";
+
 export default function Nosotros() {
     return (
         <>
@@ -31,7 +33,7 @@ export default function Nosotros() {
                         </div>
                         <div className="relative">
                             <img
-                                src="../../../src/assets/images/trabajo.png"
+                                src={trabajo}
                                 alt="Equipo trabajando"
                                 width={500}
                                 height={400}

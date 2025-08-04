@@ -6,22 +6,22 @@
       "categoria": ".....",
       "imagenes": [
         {
-          "url": "../../../src/assets/images/portafolio/GoldenGoose.jpg",
+          "url": "@/assets/images/portafolio/GoldenGoose.jpg",
           "titulo": "Estructura",
           "descripcion": "Estructrua"
         },
         {
-          "url": "../../../src/assets/images/portafolio/GoldenGoose2.jpg",
+          "url": "@/assets/images/portafolio/GoldenGoose2.jpg",
           "titulo": "Estructura 2",
           "descripcion": "Estructura 2"
         },
         {
-          "url": "../../../src/assets/images/portafolio/GoldenGoose3.jpg",
+          "url": "@/assets/images/portafolio/GoldenGoose3.jpg",
           "titulo": "Estructrura 3",
           "descripcion": "Estructura 3"
         },
         {
-          "url": "../../../src/assets/images/portafolio/GoldenGoose4.jpg",
+          "url": "@/assets/images/portafolio/GoldenGoose4.jpg",
           "titulo": "Estructrura 4",
           "descripcion": "Estructura 4"
         }
@@ -33,17 +33,16 @@
       "categoria": "......",
       "imagenes": [
         {
-          "url": "../../../src/assets/images/portafolio/BreakerTrip.jpg",
+          "url": "@/assets/images/portafolio/BreakerTrip.jpg",
           "titulo": "Estructura",
           "descripcion": "Estructura."
         },
         {
-          "url": "../../../src/assets/images/portafolio/BreakerTrip2.jpg",
+          "url": "@/assets/images/portafolio/BreakerTrip2.jpg",
           "titulo": "Estructura 2",
           "descripcion": "Estructura 2."
         }
       ]
-
     }
   ]
 }

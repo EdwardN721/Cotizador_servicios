@@ -5,7 +5,16 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import Imagen from "@/components/ui/Imagen.jsx"
 import { portfolioServicios } from "../../assets/json/PortafolioJson.json"
 
+const allImages = import.meta.glob('@/assets/images/portafolio/*.jpg', { eager: true });
+
 export default function Carrusel() {
+    const normalizePath = (path) => path.replace('@/assets', '/src/assets');
+
+    const imageMap = {};
+    Object.entries(allImages).forEach(([key, mod]) => {
+        imageMap[key] = mod.default;
+    });
+
     const [currentSlide, setCurrentSlide] = useState(0)
     const [currentImagenIndex, setCurrentImagenIndex] = useState({ 0: 0, 1: 0 }) // Para cada servicio
 
@@ -57,12 +66,10 @@ export default function Carrusel() {
                                         <div className="relative">
                                             <div className="aspect-[4/5] w-full max-w-md overflow-hidden bg-gray-100 rounded-lg flex items-center justify-center m-auto">
                                                 <Imagen
-                                                    src={servicio.imagenes[currentImagenIndex[servicioIndex]].url || "/placeholder.svg"}
+                                                    src={imageMap[normalizePath(servicio.imagenes[currentImagenIndex[servicioIndex]].url)] || "/placeholder.svg"}
                                                     alt={servicio.imagenes[currentImagenIndex[servicioIndex]].titulo}
                                                     className="object-contain w-full h-full"
                                                 />
-
-
                                             {/* Navegación de imágenes */}
                                                 <Button
                                                     variant="outline"

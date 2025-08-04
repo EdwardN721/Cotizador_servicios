@@ -1,3 +1,4 @@
+import trabajo from "@/assets/images/trabajo.png"
 export default function QuienesSomos() {
     return (
         <>
@@ -21,7 +22,7 @@ export default function QuienesSomos() {
                         </div>
                         <div className="relative">
                             <img
-                                src="../../../src/assets/images/trabajo.png"
+                                src={trabajo}
                                 alt="Equipo trabajando"
                                 className="w-5/6 h-5/6 rounded-lg shadow-lg"
                             />

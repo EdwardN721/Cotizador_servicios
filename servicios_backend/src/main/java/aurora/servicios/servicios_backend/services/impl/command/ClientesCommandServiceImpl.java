@@ -29,17 +29,7 @@ public class ClientesCommandServiceImpl implements ClientesCommandService {
             return null;
         }
 
-        repository.crearClientes(clientes);
-
-        return new ClientesDto(
-                clientes.getId(),
-                clientes.getNombre(),
-                clientes.getEmail(),
-                clientes.getNotas(),
-                clientes.getActivo(),
-                clientes.getCreatedAt(),
-                clientes.getUpdatedAt()
-        );
+        return repository.crearClientes(clientes);
     }
 
     @Override

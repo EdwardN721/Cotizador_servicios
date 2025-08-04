@@ -1,5 +1,6 @@
 import { ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/Button.jsx"
+import logo from "@/assets/images/logo.png"
 
 export default function Menu({ onScrollToForm }) {
     return (
@@ -18,7 +19,7 @@ export default function Menu({ onScrollToForm }) {
                     {/* Logo + nombre */}
                     <div className="flex items-center gap-2 sm:gap-4">
                         <img
-                            src="../../../src/assets/images/logo.png"
+                            src={logo}
                             alt="Logo"
                             className="h-10 w-auto sm:h-12 object-contain rounded p-1"
                         />

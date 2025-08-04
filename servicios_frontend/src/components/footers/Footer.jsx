@@ -2,6 +2,7 @@ import React from "react";
 import { Separator } from "@/components/ui/Separator.jsx"
 import { Mail, Phone, MapPin  } from "lucide-react"
 import { FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
+import logo from "@/assets/images/logo.png";
 
 export default function Footer() {
     const social = [
@@ -21,14 +22,14 @@ export default function Footer() {
 
     return (
         <>
-            <footer className="py-12 px-4 bg-gray-900 text-white">
+            <footer className="py-10 px-4 bg-gray-900 text-white">
                 <div className="container mx-auto max-w-6xl">
                     <div className="grid md:grid-cols-3 gap-8">
                         <div>
                             <img
-                                src="../../../src/assets/images/logo.png"
+                                src={logo}
                                 alt="Logo"
-                                className="mb-4 bg-white/10 rounded p-2"
+                                className="h-50 mx-auto mb-4 bg-white/10 rounded p-2"
                             />
                             <p className="text-gray-300">Comprometidos con la excelencia y la innovación en cada proyecto.</p>
                         </div>
